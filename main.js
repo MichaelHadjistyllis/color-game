@@ -1,3 +1,11 @@
+//fix easy button ! and hard button 
+//fix styling 
+
+
+
+
+
+
 var colors = generateRandomColors(6);
 //possible square color randomizer 
 function generateRandomColors(numberOfColors) {
@@ -95,60 +103,18 @@ function reset() {
         fillSquare();
         var h1 = document.querySelector("h1");
         h1.style.backgroundColor = "#232323";
+        var clearText = document.getElementById("message");
+        clearText.textContent = '';
 
     });
 }
 //difficulty button listeners
-function easyButton() {
-    var easyButton = document.getElementById("easy");
-    easyButton.addEventListener("click", function() {
-        if (!(easyButton.classList.contains("selected"))) {
-            easyButton.classList.add("selected");
 
-        } else {
-            easyButton.classList.remove("selected");
-        }
-        pickedColor = pickColor();
-        var colorDisplay = document.getElementById("color-display");
-        colorDisplay.textContent = pickedColor;
-        for (var i = 0; i < squares.length; i++) {
-            if (colors[i]) {
-                squares[i].style.backgroundColor = colors[i];
-            } else {
-                squares[i].style.display = "none";
-            }
-
-        }
-    });
-
-}
-
-
-function hardButton() {
-    var hardButton = document.querySelector("#hard");
-    hardButton.addEventListener("click", function() {
-        if (!(hardButton.classList.contains("selected"))) {
-            hardButton.classList.add("selected");
-
-        } else {
-            hardButton.classList.remove("selected");
-        }
-        for (var i = 0; i < squares.length; i++) {
-
-            squares[i].style.backgroundColor = colors[i];
-            squares[i].style.display = "block";
-        }
-
-
-
-
-    });
-}
 //call button functions 
-function difficulty() {
+/*function difficulty() {
     hardButton();
     easyButton();
-}
+}*/
 
 //main function calls subfunctions 
 function main() {
@@ -156,7 +122,7 @@ function main() {
     targeter();
     clickListener();
     reset();
-    difficulty();
+    // difficulty();
 
 
 }
