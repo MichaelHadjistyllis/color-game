@@ -8,6 +8,7 @@ body {
     padding-bottom: 30%;
     float: left;
     margin: 1.66%;
+    border-radius: 10%;
 }
 
 #container {
@@ -17,8 +18,11 @@ body {
 
 h1 {
     color: white;
-    text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
 #stripe {
@@ -27,12 +31,14 @@ h1 {
     width: 50%;
     margin: auto;
     font-size: 18px;
-    text-align: center;
     color: white;
+    text-align: center;
 }
 
 .selected {
-    background-color: lightblue;
+    background-color: lavender;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 button {
