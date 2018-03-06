@@ -18,15 +18,31 @@ body {
 h1 {
     color: white;
     text-align: center;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #stripe {
-    background: white;
+    background: #232323;
     height: 30px;
+    width: 50%;
+    margin: auto;
+    font-size: 18px;
     text-align: center;
-    color: black;
+    color: white;
 }
 
 .selected {
     background-color: lightblue;
+}
+
+button {
+    border: none;
+    color: lightgreen;
+    background-color: #232323;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+span {
+    font-family: 'Courier New', Courier, monospace;
 }
