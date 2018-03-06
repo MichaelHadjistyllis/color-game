@@ -1,11 +1,3 @@
-//fix easy button ! and hard button 
-//fix styling 
-
-
-
-
-
-
 var colors = generateRandomColors(6);
 //possible square color randomizer 
 function generateRandomColors(numberOfColors) {
@@ -108,13 +100,50 @@ function reset() {
 
     });
 }
+
+//toggles btn css on click 
+function toggler(btn) {
+    btn.addEventListener("click", function() {
+        if (!(btn.classList.contains("selected"))) {
+            btn.classList.add("selected");
+        } else {
+            btn.classList.remove("selected");
+        }
+    });
+}
+//removes selected class from opposite button 
+
 //difficulty button listeners
+function easyButton() {
+    var easyBtn = document.getElementById("easy");
+    var hardBtn = document.getElementById("hard");
+    toggler(easyBtn);
+    easyBtn.addEventListener("click", function() {
+        if (hardBtn.classList.contains("selected")) {
+            hardBtn.classList.remove("selected");
+        }
+    });
+
+}
+
+function hardButton() {
+    var hardBtn = document.getElementById("hard");
+    var easyBtn = document.getElementById("easy");
+    toggler(hardBtn);
+    hardBtn.addEventListener("click", function() {
+        if (easyBtn.classList.contains("selected")) {
+            easyBtn.classList.remove("selected");
+        }
+    });
+}
+//difficulty button functionality 
+
 
 //call button functions 
-/*function difficulty() {
+function difficulty() {
     hardButton();
     easyButton();
-}*/
+}
 
 //main function calls subfunctions 
 function main() {
@@ -122,7 +151,7 @@ function main() {
     targeter();
     clickListener();
     reset();
-    // difficulty();
+    difficulty();
 
 
 }
