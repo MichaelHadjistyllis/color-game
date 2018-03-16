@@ -74,7 +74,7 @@ function messageDisplayRight() {
     messageDisplay.textContent = "Correct!";
 }
 
-//change color of squares and header when user is right to target color
+//change color of squares and header to target color when user is right 
 function changeColor(color) {
 
     for (var i = 0; i < squares.length; i++) {
@@ -86,10 +86,16 @@ function changeColor(color) {
 
 //reset button functionality ("New Colors")
 function reset() {
+    var hardBtn = document.getElementById('hard');
+    var easyBtn = document.getElementById('easy');
     var resetButton = document.getElementById("reset");
     resetButton.addEventListener("click", function() {
         var colorDisplay = document.getElementById("color-display");
-        colors = generateRandomColors(6);
+        if (hardBtn.classList.contains('selected')) {
+            colors = generateRandomColors(6);
+        } else {
+            colors = generateRandomColors(3);
+        }
         pickedColor = pickColor();
         colorDisplay.textContent = pickedColor;
         fillSquare();
@@ -102,41 +108,77 @@ function reset() {
 }
 
 //toggles btn css on click 
-function toggler(btn) {
-    btn.addEventListener("click", function() {
-        if (!(btn.classList.contains("selected"))) {
-            btn.classList.add("selected");
+function toggler() {
+    var hardBtn = document.getElementById('hard');
+    var easyBtn = document.getElementById('easy');
+    easyBtn.addEventListener('click', function() {
+        if (this.classList.contains('selected')) {
+            this.classList.remove('selected');
         } else {
-            btn.classList.remove("selected");
+            this.classList.add('selected');
+        }
+        if (hardBtn.classList.contains('selected')) {
+            hardBtn.classList.remove('selected');
+        }
+    });
+    hardBtn.addEventListener('click', function() {
+        if (this.classList.contains('selected')) {
+            this.classList.remove('selected');
+
+        } else {
+            this.classList.add('selected');
+        }
+        if (easyBtn.classList.contains('selected')) {
+            easyBtn.classList.remove('selected');
         }
     });
 }
-//removes selected class from opposite button 
+
+function difficultyMode(mode) {
+    if (mode === 'hard') {
+        colors = generateRandomColors(6);
+        for (var i = 0; i < squares.length; i++) {
+            squares[i].style.display = 'inline';
+        }
+    } else if (mode === 'easy') {
+        colors = generateRandomColors(3);
+    }
+    pickedColor = pickColor();
+    var colorDisplay = document.getElementById("color-display");
+    colorDisplay.textContent = pickedColor;
+    for (var i = 0; i < squares.length; i++) {
+        if (colors[i]) {
+            squares[i].style.backgroundColor = colors[i];
+        } else {
+            squares[i].style.display = 'none';
+        }
+    }
+}
 
 //difficulty button listeners
 function easyButton() {
     var easyBtn = document.getElementById("easy");
-    var hardBtn = document.getElementById("hard");
-    toggler(easyBtn);
+    var hardBtn = document.getElementById('hard');
+
+
     easyBtn.addEventListener("click", function() {
-        if (hardBtn.classList.contains("selected")) {
-            hardBtn.classList.remove("selected");
-        }
+        difficultyMode('easy');
+
     });
 
 }
 
 function hardButton() {
     var hardBtn = document.getElementById("hard");
-    var easyBtn = document.getElementById("easy");
-    toggler(hardBtn);
+    var easyBtn = document.getElementById('easy');
+
+
     hardBtn.addEventListener("click", function() {
-        if (easyBtn.classList.contains("selected")) {
-            easyBtn.classList.remove("selected");
-        }
+        difficultyMode('hard');
+
     });
 }
-//difficulty button functionality 
+
 
 
 //call button functions 
@@ -152,6 +194,9 @@ function main() {
     clickListener();
     reset();
     difficulty();
+    toggler();
+
+
 
 
 }
